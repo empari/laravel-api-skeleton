@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace Skel\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
