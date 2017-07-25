@@ -1,0 +1,60 @@
+# v2 syntax
+version: '2'
+
+# Named volumes
+volumes:
+  # MySQL Data
+  skel-mysql-data:
+    driver: local
+
+  # Redis Data
+  skel-redis-data:
+    driver: local
+
+services:
+  # MySQL (5.7)
+  mysql:
+    image: ambientum/mysql:5.7
+    container_name: skel-mysql
+    volumes:
+      - skel-mysql-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=skel
+      - MYSQL_DATABASE=skel
+      - MYSQL_USER=skel
+      - MYSQL_PASSWORD=skel
+
+  # Redis
+  cache:
+    image: ambientum/redis:3.2
+    container_name: skel-redis
+    command: --appendonly yes
+    volumes:
+      - skel-redis-data:/data
+    ports:
+      - "6379:6379"
+
+  # PHP (with NGinx)
+  app:
+    image: ambientum/php:7.0-nginx
+    container_name: skel-app
+    volumes:
+      - .:/var/www/app
+    ports:
+      - "80:8080"
+    links:
+      - mysql
+      - cache
+
+  # Laravel Queues
+  queue:
+    image: ambientum/php:7.0
+    container_name: skel-queue
+    command: php artisan queue:listen
+    volumes:
+      - .:/var/www/app
+    links:
+      - mysql
+      - cache
