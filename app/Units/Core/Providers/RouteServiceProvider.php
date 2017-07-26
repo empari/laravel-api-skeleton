@@ -2,8 +2,8 @@
 
 namespace Skel\Units\Core\Providers;
 
-use Empari\Support\Http\Providers\RouteServiceProvider as ServiceProvider;
 use Skel\Units\Core\Http\Routes\HomeRoutes;
+use Empari\Support\Http\Providers\RouteServiceProvider as ServiceProvider;
 
 class RouteServiceProvider extends ServiceProvider
 {

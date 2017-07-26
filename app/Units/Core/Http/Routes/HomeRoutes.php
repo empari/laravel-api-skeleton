@@ -1,7 +1,5 @@
 <?php
-
 namespace Skel\Units\Core\Http\Routes;
-
 
 use Empari\Support\Http\Routing\RouteFileWeb;
 
