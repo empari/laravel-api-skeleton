@@ -169,13 +169,9 @@ return [
         Laravel\Tinker\TinkerServiceProvider::class,
 
         /*
-         * Application Service Providers...
+         * Units Service Providers...
          */
-        Skel\Providers\AppServiceProvider::class,
-        Skel\Providers\AuthServiceProvider::class,
-        // Skel\Providers\BroadcastServiceProvider::class,
-        Skel\Providers\EventServiceProvider::class,
-        Skel\Providers\RouteServiceProvider::class,
+        Skel\Units\Core\Providers\UnitServiceProvider::class,
 
     ],
 

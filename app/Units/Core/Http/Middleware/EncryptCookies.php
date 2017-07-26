@@ -1,6 +1,6 @@
 <?php
 
-namespace Skel\Http\Middleware;
+namespace Skel\Units\Core\Http\Middleware;
 
 use Illuminate\Cookie\Middleware\EncryptCookies as BaseEncrypter;
 

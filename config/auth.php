@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => Skel\User::class,
+            'model' => Skel\Domains\Users\Models\User::class,
         ],
 
         // 'users' => [
