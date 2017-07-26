@@ -108,16 +108,16 @@
         },
         {
             "name": "empari/support",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/empari/support.git",
-                "reference": "943d6201032e499975da147ebb0b94ae264d8c78"
+                "reference": "e73dfb8e76328b7ac0f3b71ec6c00a9e28deb0d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/empari/support/zipball/943d6201032e499975da147ebb0b94ae264d8c78",
-                "reference": "943d6201032e499975da147ebb0b94ae264d8c78",
+                "url": "https://api.github.com/repos/empari/support/zipball/e73dfb8e76328b7ac0f3b71ec6c00a9e28deb0d0",
+                "reference": "e73dfb8e76328b7ac0f3b71ec6c00a9e28deb0d0",
                 "shasum": ""
             },
             "require": {
@@ -145,7 +145,7 @@
                 }
             ],
             "description": "Domain Tools, Utils and Support Package for Laravel",
-            "time": "2017-07-24T14:04:27+00:00"
+            "time": "2017-07-26T21:36:00+00:00"
         },
         {
             "name": "erusev/parsedown",
