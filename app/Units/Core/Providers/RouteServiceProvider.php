@@ -1,5 +1,4 @@
 <?php
-
 namespace Skel\Units\Core\Providers;
 
 use Skel\Units\Core\Http\Routes\HomeRoutes;

@@ -1,5 +1,4 @@
 <?php
-
 namespace Skel\Units\Core\Http\Controllers;
 
 use Illuminate\Foundation\Inspiring;
