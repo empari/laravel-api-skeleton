@@ -13,7 +13,7 @@ class ConsoleKernel extends Kernel
      * @var array
      */
     protected $commands = [
-        //
+        \Skel\Units\Core\Console\Commands\Inspire::class,
     ];
 
     /**
