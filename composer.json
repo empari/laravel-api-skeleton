@@ -16,6 +16,7 @@
         "caouecs/laravel-lang": "^3.0",
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
+        "mpociot/laravel-apidoc-generator": "^2.0",
         "phpunit/phpunit": "~5.7"
     },
     "autoload": {

@@ -52,7 +52,29 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => (env('APP_SECURE', false) ? 'https://' : 'http://').env('APP_DOMAIN', 'localhost'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application URL (Domain Only)
+    |--------------------------------------------------------------------------
+    |
+    | Application Domain without protocol.
+    |
+    */
+
+    'domain' => env('APP_DOMAIN', false),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application URL (HTTPS Enabled)
+    |--------------------------------------------------------------------------
+    |
+    | Application URL should be HTTPS?.
+    |
+    */
+
+    'secure' => env('APP_SECURE', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -65,7 +87,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => env('APP_TIMEZONE', 'UTC'),
 
     /*
     |--------------------------------------------------------------------------
@@ -78,7 +100,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => env('APP_LOCALE', 'en'),
 
     /*
     * Supported Languages
@@ -129,7 +151,7 @@ return [
     |
     */
 
-    'log' => env('APP_LOG', 'single'),
+    'log' => env('APP_LOG', 'daily'),
 
     'log_level' => env('APP_LOG_LEVEL', 'debug'),
 
@@ -173,16 +195,21 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         /*
-         * Package Service Providers...
+         * Vendor Service Providers...
          */
         Laravel\Tinker\TinkerServiceProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
 
         /*
+         * Domains Service Providers...
+         */
+        //
+
+        /*
          * Units Service Providers...
          */
+        Skel\Units\Core\Providers\OnlyEnvLocalServiceProvider::class,
         Skel\Units\Core\Providers\UnitServiceProvider::class,
-
     ],
 
     /*

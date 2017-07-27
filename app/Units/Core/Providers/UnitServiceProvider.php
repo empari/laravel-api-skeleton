@@ -2,7 +2,6 @@
 
 namespace Skel\Units\Core\Providers;
 
-
 use Illuminate\Support\ServiceProvider;
 
 class UnitServiceProvider extends ServiceProvider
