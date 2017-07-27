@@ -173,16 +173,21 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         /*
-         * Package Service Providers...
+         * Vendor Service Providers...
          */
         Laravel\Tinker\TinkerServiceProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
 
         /*
+         * Domains Service Providers...
+         */
+        //
+
+        /*
          * Units Service Providers...
          */
+        Skel\Units\Core\Providers\OnlyEnvLocalServiceProvider::class,
         Skel\Units\Core\Providers\UnitServiceProvider::class,
-
     ],
 
     /*
