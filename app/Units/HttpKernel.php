@@ -1,5 +1,4 @@
 <?php
-
 namespace Skel\Units;
 
 use Illuminate\Foundation\Http\Kernel;
@@ -15,9 +14,10 @@ class HttpKernel extends Kernel
      */
     protected $middleware = [
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
-        \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \Skel\Units\Core\Http\Middleware\TrimStrings::class,
+        \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+        \Empari\Support\Http\Middleware\AttachApiVersionResponse::class,
     ];
 
     /**
@@ -27,16 +27,17 @@ class HttpKernel extends Kernel
      */
     protected $middlewareGroups = [
         'web' => [
-            \Skel\Units\Core\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
             // \Illuminate\Session\Middleware\AuthenticateSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+            \Skel\Units\Core\Http\Middleware\EncryptCookies::class,
             \Skel\Units\Core\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
         'api' => [
+            \Empari\Support\Http\Middleware\AlwaysExpectsJson::class,
             'throttle:60,1',
             'bindings',
         ],
