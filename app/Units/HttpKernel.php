@@ -37,6 +37,7 @@ class HttpKernel extends Kernel
         ],
 
         'api' => [
+            \Barryvdh\Cors\HandleCors::class,
             \Empari\Support\Http\Middleware\AlwaysExpectsJson::class,
             'throttle:60,1',
             'bindings',

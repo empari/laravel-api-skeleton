@@ -1,6 +1,7 @@
 <?php
 namespace Skel\Units\Core\Providers;
 
+use Skel\Units\Core\Http\Routes\HomeApiRoutes;
 use Skel\Units\Core\Http\Routes\HomeRoutes;
 use Empari\Support\Http\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -23,5 +24,6 @@ class RouteServiceProvider extends ServiceProvider
     public function map()
     {
         $this->registerRouteClass(HomeRoutes::class);
+        $this->registerRouteClass(HomeApiRoutes::class);
     }
 }
