@@ -1,7 +1,7 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "name": "empari/laravel-api-skeleton",
+    "description": "The Empari API Platform Skeleton",
+    "keywords": ["empari", "api", "skeleton", "framework", "laravel"],
     "license": "MIT",
     "type": "project",
     "require": {
