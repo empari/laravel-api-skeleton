@@ -5,6 +5,8 @@ namespace Skel\Units;
 use Exception;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler;
+use Illuminate\Http\Response;
+use Symfony\Component\Debug\Exception\FlattenException;
 
 class ExceptionHandler extends Handler
 {
@@ -44,6 +46,23 @@ class ExceptionHandler extends Handler
      */
     public function render($request, Exception $exception)
     {
+        if ($request->expectsJson()) {
+            if ($exception instanceof \Illuminate\Database\Eloquent\ModelNotFoundException) {
+                $modelClass = explode('\\', $exception->getModel());
+
+                return response()->json([
+                    'data' => [
+                        'error' => [
+                            'code' => Response::HTTP_NOT_FOUND,
+                            'message' => trans('databases.not_found', ['modelClass' => end($modelClass)])
+                        ]
+                    ]
+                ], Response::HTTP_NOT_FOUND);
+            }
+
+            // add outhers types of exceptions here
+        }
+
         return parent::render($request, $exception);
     }
 
@@ -56,10 +75,41 @@ class ExceptionHandler extends Handler
      */
     protected function unauthenticated($request, AuthenticationException $exception)
     {
-        if ($request->expectsJson()) {
-            return response()->json(['error' => 'Unauthenticated.'], 401);
+        return response()->json([
+            'data' => [
+                'error' => [
+                    'code' => Response::HTTP_UNAUTHORIZED,
+                    'message' => trans('auth.unauthenticated')
+                ]
+            ]
+        ], Response::HTTP_UNAUTHORIZED);
+    }
+
+    /**
+     * Create a Symfony response for the given exception.
+     *
+     * @param  \Exception  $e
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    protected function convertExceptionToResponse(Exception $e)
+    {
+        $e = FlattenException::create($e);
+
+        $error_response['code'] = $e->getStatusCode();
+        $error_response['message'] = Response::$statusTexts[$e->getStatusCode()];
+
+        if (config('app.debug')) {
+            $error_response['exception'] = $e->getMessage();
+            $error_response['class'] = $e->getClass();
+            $error_response['file'] = $e->getFile();
+            $error_response['line'] = $e->getLine();
+            $error_response['trace'] = $e->getTrace();
         }
 
-        return redirect()->guest(route('login'));
+        return response()->json([
+            'data' => [
+                'error' => $error_response
+            ]
+        ], $e->getStatusCode());
     }
 }
