@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "1f978f1b2d753b0c26f93210f97822c1",
+    "content-hash": "16b265df4bbdd57b362731b81e70b221",
     "packages": [
         {
             "name": "barryvdh/laravel-cors",
@@ -166,16 +166,16 @@
         },
         {
             "name": "empari/support",
-            "version": "1.0.3",
+            "version": "1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/empari/support.git",
-                "reference": "d7b99f54db3f3e90a62ab1e5a56c0bc802f96e91"
+                "reference": "8087c2411f553a262a815e8922f38ffbe4e62543"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/empari/support/zipball/d7b99f54db3f3e90a62ab1e5a56c0bc802f96e91",
-                "reference": "d7b99f54db3f3e90a62ab1e5a56c0bc802f96e91",
+                "url": "https://api.github.com/repos/empari/support/zipball/8087c2411f553a262a815e8922f38ffbe4e62543",
+                "reference": "8087c2411f553a262a815e8922f38ffbe4e62543",
                 "shasum": ""
             },
             "require": {
@@ -203,7 +203,7 @@
                 }
             ],
             "description": "Domain Tools, Utils and Support Package for Laravel",
-            "time": "2017-07-27T18:31:36+00:00"
+            "time": "2017-07-27T19:40:50+00:00"
         },
         {
             "name": "erusev/parsedown",
@@ -2090,6 +2090,48 @@
         }
     ],
     "packages-dev": [
+        {
+            "name": "caouecs/laravel-lang",
+            "version": "3.0.35",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/caouecs/Laravel-lang.git",
+                "reference": "7c4c87b366ee3a17860e9371f339e7158d560caf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/caouecs/Laravel-lang/zipball/7c4c87b366ee3a17860e9371f339e7158d560caf",
+                "reference": "7c4c87b366ee3a17860e9371f339e7158d560caf",
+                "shasum": ""
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^1.10"
+            },
+            "suggest": {
+                "ablunier/laravel-lang-installer": "Command for easily add languages to a Laravel project",
+                "arcanedev/laravel-lang": "Translations manager and checker for Laravel 5",
+                "overtrue/laravel-lang": "Command to add languages in your project"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "caouecs",
+                    "email": "caouecs@caouecs.net"
+                }
+            ],
+            "description": "Languages for Laravel",
+            "keywords": [
+                "lang",
+                "languages",
+                "laravel",
+                "lpm"
+            ],
+            "time": "2017-06-09T08:16:13+00:00"
+        },
         {
             "name": "doctrine/instantiator",
             "version": "1.0.5",

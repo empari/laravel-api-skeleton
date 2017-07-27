@@ -1,5 +1,4 @@
 <?php
-
 namespace Skel\Units;
 
 use Exception;
@@ -38,6 +37,25 @@ class ExceptionHandler extends Handler
     }
 
     /**
+     * Prepare response Json
+     *
+     * @param string $message
+     * @param int $code
+     * @return array
+     */
+    public function prepareResponseJson($message = null, $code = 500)
+    {
+        return [
+            'data' => [
+                'error' => [
+                    'code' => $code,
+                    'message' => $message
+                ]
+            ]
+        ];
+    }
+
+    /**
      * Render an exception into an HTTP response.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -50,17 +68,26 @@ class ExceptionHandler extends Handler
             if ($exception instanceof \Illuminate\Database\Eloquent\ModelNotFoundException) {
                 $modelClass = explode('\\', $exception->getModel());
 
-                return response()->json([
-                    'data' => [
-                        'error' => [
-                            'code' => Response::HTTP_NOT_FOUND,
-                            'message' => trans('databases.not_found', ['modelClass' => end($modelClass)])
-                        ]
-                    ]
-                ], Response::HTTP_NOT_FOUND);
+                return response()->json(
+                    $this->prepareResponseJson(
+                        trans('databases.not_found', ['modelClass' => end($modelClass)]),
+                        Response::HTTP_NOT_FOUND
+                    ),
+                    Response::HTTP_NOT_FOUND
+                );
             }
 
             // add outhers types of exceptions here
+        }
+
+        if ($exception instanceof \Empari\Support\Exceptions\Localization\LanguageNotSupportedException) {
+            return response()->json(
+                $this->prepareResponseJson(
+                    trans('localization.language_not_supported'),
+                    Response::HTTP_FORBIDDEN
+                ),
+                Response::HTTP_FORBIDDEN
+            );
         }
 
         return parent::render($request, $exception);
@@ -75,14 +102,13 @@ class ExceptionHandler extends Handler
      */
     protected function unauthenticated($request, AuthenticationException $exception)
     {
-        return response()->json([
-            'data' => [
-                'error' => [
-                    'code' => Response::HTTP_UNAUTHORIZED,
-                    'message' => trans('auth.unauthenticated')
-                ]
-            ]
-        ], Response::HTTP_UNAUTHORIZED);
+        return response()->json(
+            $this->prepareResponseJson(
+                trans('auth.unauthenticated'),
+                Response::HTTP_UNAUTHORIZED
+            ),
+            Response::HTTP_UNAUTHORIZED
+        );
     }
 
     /**
